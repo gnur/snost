@@ -1,4 +1,9 @@
+FROM golang:1.8.1 as builder
+WORKDIR /go/src/github.com/gnur/snost/
+COPY main.go .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+
 FROM scratch
-ADD main /
-EXPOSE 80
-CMD [ "/main" ]
+WORKDIR /
+COPY --from=builder /go/src/github.com/gnur/snost/app .
+CMD ["/app"]

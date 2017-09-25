@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	port = ":80"
+	port = "0.0.0.0:8080"
 )
 
 var calls = 0
