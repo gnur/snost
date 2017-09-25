@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 )
 
 const (
@@ -18,7 +19,9 @@ func helloWorld(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		hostname = "a host with no name"
 	}
-	calls++
+	if !strings.HasSuffix(r.URL.Path, ".ico") {
+		calls++
+	}
 	fmt.Fprintf(w, "Hello, %s! I'm %s and I've served %d requests.\n", r.RemoteAddr, hostname, calls)
 }
 
