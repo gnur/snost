@@ -31,7 +31,7 @@ func init() {
 		hostname = "a host with no name"
 	}
 
-	fmt.Printf("Started server: '%s' at http://localhost%v.\n", hostname, port)
+	fmt.Printf("Started server: '%s' at http://%v.\n", hostname, port)
 	http.HandleFunc("/", helloWorld)
 	http.ListenAndServe(port, nil)
 }
